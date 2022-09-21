@@ -1,0 +1,47 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+#
+
+comma := ,
+
+.EXPORT_ALL_VARIABLES:
+
+DOCKER_BUILDKIT ?= 1
+HUB ?= ghcr.io/apache/skywalking-showcase
+TAG ?= $(shell git rev-parse --short HEAD)
+
+ES_IMAGE ?= docker.elastic.co/elasticsearch/elasticsearch-oss:7.10.0
+
+SW_OAP_IMAGE ?= ghcr.io/apache/skywalking/oap:7df469a6e85fac0275767d996df77eb2b3a51c62
+SW_UI_IMAGE ?= ghcr.io/apache/skywalking/ui:7df469a6e85fac0275767d996df77eb2b3a51c62
+SW_CLI_IMAGE ?= ghcr.io/apache/skywalking-cli/skywalking-cli:bdcba1c93b1ad702a88f30b798df5e99d963689d
+SW_EVENT_EXPORTER_IMAGE ?= ghcr.io/apache/skywalking-kubernetes-event-exporter/skywalking-kubernetes-event-exporter:8a012a3f968cb139f817189afb9b3748841bba22
+SW_AGENT_JAVA_IMAGE ?= ghcr.io/apache/skywalking-java/skywalking-java:d75cdf51e1088a9cf2289b5588e8114fcf3099d7-java8
+
+SW_AGENT_NODEJS_BACKEND_VERSION ?= 59ef1aed6a404e2e8afffbb4b81ea849ae4f3026
+SW_AGENT_NODEJS_FRONTEND_VERSION ?= 1e31bd17dcebb616163d848fc435f3a2d4822fb8
+
+SW_SATELLITE_IMAGE ?= ghcr.io/apache/skywalking-satellite/skywalking-satellite:v33bd6520e95c9024989aa388f4523c4641f874ad
+SW_ROVER_IMAGE ?= ghcr.io/apache/skywalking-rover/skywalking-rover:96bfd2a51e582f34ccbbedfd4bceb7407559de2a
+
+SWCK_OPERATOR_VERSION ?= 0.6.1
+CERT_MANAGER_VERSION ?= v1.3.1
+
+OPEN_FUNCTION_VERSION ?= v0.6.0
+
+# ALL variables should be listed above ^^
+EXPORTED_VARS := $(filter-out <%,$(.VARIABLES))
